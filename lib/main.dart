@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Haven '),
+      home: const MyHomePage(title: 'Haven  the PG app'),
     );
   }
 }
