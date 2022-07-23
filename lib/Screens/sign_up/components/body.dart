@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:haven/constants.dart';
+import 'package:haven/login.dart';
 
 import '../../../components/socal_card.dart';
 import '../../../size_config.dart';
@@ -23,6 +24,21 @@ class Body extends StatelessWidget {
                 SizedBox(height: SizeConfig.screenHeight * 0.08),
                 SignUpForm(),
                 SizedBox(height: SizeConfig.screenHeight * 0.08),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => MyLoginPage(),
+                    ));
+                  },
+                  child: Text(
+                    'Already Registered? Sign In..',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.blue,
+                      fontWeight: FontWeight.w900,
+                    ),
+                  ),
+                ),
                 // Row(
                 //   mainAxisAlignment: MainAxisAlignment.center,
                 //   children: [
@@ -40,7 +56,7 @@ class Body extends StatelessWidget {
                 //     ),
                 //   ],
                 // ),
-                //SizedBox(height: getProportionateScreenHeight(20)),
+                SizedBox(height: getProportionateScreenHeight(20)),
                 Text(
                   'By continuing your confirm that you agree \nwith our Term and Condition',
                   textAlign: TextAlign.center,

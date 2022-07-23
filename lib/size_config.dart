@@ -10,11 +10,12 @@ class SizeConfig {
   static Orientation? orientation;
 
   static void init(BuildContext context) {
-    log('message');
     _mediaQueryData = MediaQuery.of(context);
     screenWidth = _mediaQueryData.size.width;
     screenHeight = _mediaQueryData.size.height;
     orientation = _mediaQueryData.orientation;
+    log('$screenWidth');
+    log('$screenHeight');
   }
 }
 

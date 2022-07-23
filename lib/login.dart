@@ -46,7 +46,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
     behavior: SnackBarBehavior.floating,
     backgroundColor: Colors.transparent,
     content: AwesomeSnackbarContent(
-      title: 'On Snap!',
+      title: 'Oh Snap!',
       message: 'Login Failed.\nPlease try again!',
       contentType: ContentType.failure,
     ),
