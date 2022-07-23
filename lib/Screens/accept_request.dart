@@ -4,34 +4,26 @@ import 'dart:async';
 //import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import 'package:haven/Screens/user_details.dart';
+
 class MyHomePage1 extends StatefulWidget {
   @override
   _MyHomePageState1 createState() => _MyHomePageState1();
 }
 
 class _MyHomePageState1 extends State<MyHomePage1> {
-  String ROOT =
-      "http://www.json-generator.com/api/json/get/bYKKPeXRcO?indent=2";
-
-  Future<List<User>> _getUsers() async {
-    //final response = await http.post(Uri.parse(ROOT), body: map);
-    final String response =
-        await rootBundle.loadString('assets/generated.json');
-    // var data = await http.get(Uri.parse(ROOT));
-    var jsonData = json.decode(response);
-
-    List<User> users = [];
-    for (var u in jsonData) {
-      User user = User(u["index"], u["about"], u["name"], u["picture"],
-          u["company"], u["email"]);
-      users.add(user);
-    }
-
-    print("the count is " + users.length.toString());
-
-    return users;
-  }
-
+  List<User> users = [
+    const User(
+        username: 'Rathan',
+        email: 'rtn@gmail.com',
+        image:
+            'https://i.pinimg.com/originals/57/74/c7/5774c7734711611fc5f3c0731af95be4.png'),
+    const User(
+        username: 'Don',
+        email: 'don@gmail.com',
+        image:
+            'https://www.kindpng.com/picc/m/499-4993674_mb-ani-bean-cartoon-mr-bean-drawing-hd.png'),
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,40 +31,28 @@ class _MyHomePageState1 extends State<MyHomePage1> {
         title: Text("List"),
       ),
       body: Container(
-        child: FutureBuilder(
-          future: _getUsers(),
-          builder: (BuildContext context, AsyncSnapshot asyncSnapshot) {
-            if (asyncSnapshot.data == null) {
-              return Container(
-                child: Center(
-                  child: Text("Loading ........"),
+        child: ListView.builder(
+          itemCount: users.length,
+          itemBuilder: ((context, index) {
+            final user = users[index];
+            return Card(
+              child: ListTile(
+                leading: CircleAvatar(
+                  radius: 28,
+                  backgroundImage: NetworkImage(user.image),
                 ),
-              );
-            } else {
-              return ListView.builder(
-                itemCount: asyncSnapshot.data.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return ListTile(
-                    title: Text(asyncSnapshot.data[index].name),
-                    leading: CircleAvatar(
-                      backgroundImage: NetworkImage(
-                          asyncSnapshot.data[index].picture +
-                              asyncSnapshot.data[index].index.toString() +
-                              ".jpg"),
-                    ),
-                    subtitle: Text(asyncSnapshot.data[index].email),
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          new MaterialPageRoute(
-                              builder: (context) =>
-                                  DetailPage(asyncSnapshot.data[index])));
-                    },
-                  );
+                title: Text(user.username),
+                subtitle: Text(user.email),
+                trailing: const Icon(Icons.arrow_forward),
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => UserView(
+                            user: user,
+                          )));
                 },
-              );
-            }
-          },
+              ),
+            );
+          }),
         ),
       ),
       // This trailing comma makes auto-formatting nicer for build methods.
@@ -81,34 +61,9 @@ class _MyHomePageState1 extends State<MyHomePage1> {
 }
 
 class User {
-  final int index;
-  final String about;
-  final String name;
-  final String picture;
-  final String company;
+  final String username;
   final String email;
-
-  User(this.index, this.about, this.name, this.picture, this.company,
-      this.email);
-}
-
-class DetailPage extends StatelessWidget {
-  final User user;
-
-  DetailPage(this.user);
-
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(user.name),
-      ),
-      body: Container(
-        child: Center(
-          child: Text(this.user.about),
-        ),
-      ),
-    );
-  }
+  final String image;
+  const User(
+      {required this.username, required this.email, required this.image});
 }

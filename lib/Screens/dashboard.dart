@@ -1,7 +1,9 @@
 //import 'dart:developer';
-
+//hi
 import 'package:flutter/material.dart';
 import 'package:haven/Screens/accept_request.dart';
+import 'package:haven/Screens/profile/profile_screen.dart';
+import 'package:haven/Screens/sign_up/sign_up_screen.dart';
 import 'package:haven/Screens/snackScreen.dart';
 
 class Dashboard extends StatefulWidget {
@@ -14,12 +16,12 @@ class _DashboardState extends State<Dashboard> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Haven"),
+        title: const Text("Haven"),
         elevation: .1,
-        backgroundColor: Color.fromRGBO(49, 87, 110, 1.0),
+        backgroundColor: const Color.fromRGBO(49, 87, 110, 1.0),
       ),
       body: Container(
-        padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 2.0),
+        padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 2.0),
         child: GridView.count(
           crossAxisCount: 2,
           padding: EdgeInsets.all(3.0),
@@ -41,21 +43,27 @@ class _DashboardState extends State<Dashboard> {
     return InkWell(
       child: Card(
           elevation: 1.0,
-          margin: new EdgeInsets.all(8.0),
+          margin: const EdgeInsets.all(8.0),
           child: Container(
             decoration:
-                BoxDecoration(color: Color.fromRGBO(220, 220, 220, 1.0)),
-            child: new InkWell(
+                const BoxDecoration(color: Color.fromRGBO(220, 220, 220, 1.0)),
+            child: InkWell(
               onTap: () {
                 if (id == 1) {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => FinalView(),
+                      builder: (context) => const FinalView(),
                     ),
                   );
                 } else if (id == 2) {
                   Navigator.of(context).push(
                       MaterialPageRoute(builder: (context) => MyHomePage1()));
+                } else if (id == 3) {
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => SignUpScreen()));
+                } else if (id == 6) {
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => ProfileScreen()));
                 }
               },
               child: Column(
@@ -63,18 +71,18 @@ class _DashboardState extends State<Dashboard> {
                 mainAxisSize: MainAxisSize.min,
                 verticalDirection: VerticalDirection.down,
                 children: <Widget>[
-                  SizedBox(height: 50.0),
+                  const SizedBox(height: 50.0),
                   Center(
                       child: Icon(
                     icon,
                     size: 40.0,
                     color: Colors.black,
                   )),
-                  SizedBox(height: 20.0),
-                  new Center(
-                    child: new Text(title,
-                        style:
-                            new TextStyle(fontSize: 18.0, color: Colors.black)),
+                  const SizedBox(height: 20.0),
+                  Center(
+                    child: Text(title,
+                        style: const TextStyle(
+                            fontSize: 18.0, color: Colors.black)),
                   )
                 ],
               ),
