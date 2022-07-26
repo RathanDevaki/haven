@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:haven/Screens/accept_request.dart';
 import 'package:haven/Screens/profile/profile_screen.dart';
+import 'package:haven/Screens/sign_in/sign_in_screen.dart';
 import 'package:haven/Screens/sign_up/sign_up_screen.dart';
 import 'package:haven/Screens/snackScreen.dart';
 
@@ -60,7 +61,7 @@ class _DashboardState extends State<Dashboard> {
                       MaterialPageRoute(builder: (context) => MyHomePage1()));
                 } else if (id == 3) {
                   Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => SignUpScreen()));
+                      MaterialPageRoute(builder: (context) => SignInScreen()));
                 } else if (id == 6) {
                   Navigator.of(context).push(
                       MaterialPageRoute(builder: (context) => ProfileScreen()));

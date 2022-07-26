@@ -2,6 +2,7 @@
 
 import 'dart:developer';
 
+import 'package:haven/Screens/sign_in/sign_in_screen.dart';
 import 'package:loading_animations/loading_animations.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -111,7 +112,7 @@ class _SignUpFormState extends State<SignUpForm> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => MyLoginPage()),
+                                builder: (context) => SignInScreen()),
                           );
                           setState(() {
                             showProgress = false;

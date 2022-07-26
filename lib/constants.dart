@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:haven/size_config.dart';
 
-const kPrimaryColor = Color(0xFFFF7643);
+const kPrimaryColor = Colors.orange; //Color(0xFFFF5675);
 const kPrimaryLightColor = Color(0xFFFFECDF);
 const kPrimaryGradientColor = LinearGradient(
   begin: Alignment.topLeft,
