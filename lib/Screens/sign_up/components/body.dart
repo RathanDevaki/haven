@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:haven/Screens/sign_in/sign_in_screen.dart';
 import 'package:haven/constants.dart';
 import 'package:haven/login.dart';
 
@@ -21,13 +22,13 @@ class Body extends StatelessWidget {
                 SizedBox(height: SizeConfig.screenHeight * 0.04), // 4%
                 Text("Register Account", style: headingStyle),
 
-                SizedBox(height: SizeConfig.screenHeight * 0.08),
+                SizedBox(height: SizeConfig.screenHeight * 0.04),
                 SignUpForm(),
                 SizedBox(height: SizeConfig.screenHeight * 0.08),
                 GestureDetector(
                   onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => MyLoginPage(),
+                      builder: (context) => SignInScreen(),
                     ));
                   },
                   child: Text(
@@ -57,11 +58,6 @@ class Body extends StatelessWidget {
                 //   ],
                 // ),
                 SizedBox(height: getProportionateScreenHeight(20)),
-                Text(
-                  'By continuing your confirm that you agree \nwith our Term and Condition',
-                  textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.caption,
-                )
               ],
             ),
           ),

@@ -1,8 +1,12 @@
 // @dart=2.9
 //import 'dart:developer';
 
+import 'dart:developer';
+
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:haven/Models/user_model.dart';
 import 'package:haven/Screens/dashboard.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -113,37 +117,45 @@ class _MyLoginPageState extends State<MyLoginPage> {
                     });
 
                     try {
-                      final newUser = await _auth.signInWithEmailAndPassword(
-                          email: email, password: password);
-
-                      print(newUser.toString());
-
-                      if (newUser != null) {
-                        ScaffoldMessenger.of(context)
-                            .showSnackBar(successSnackBar);
-                        setState(() {
-                          showProgress = false;
-                        });
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => Dashboard(),
-                          ),
-                        );
-                      } else {
-                        // ScaffoldMessenger.of(context)
-                        //     .showSnackBar(failureSnackBar);
-                        // setState(() {
-                        //   showProgress = false;
-                        // });
-                      }
-                    } catch (e) {
-                      ScaffoldMessenger.of(context)
-                          .showSnackBar(failureSnackBar);
-                      setState(() {
-                        showProgress = false;
+                      await _auth
+                          .createUserWithEmailAndPassword(
+                              email: email, password: password)
+                          .then((value) => postDetails())
+                          .catchError((e) {
+                            log(e.toString());
                       });
+                    } catch (e) {
+                      log(e.toString());
                     }
+
+                    // try {
+                    //   final newUser = await _auth.signInWithEmailAndPassword(
+                    //       email: email, password: password);
+
+                    //   print(newUser.toString());
+
+                    //   if (newUser != null) {
+                    //     ScaffoldMessenger.of(context)
+                    //         .showSnackBar(successSnackBar);
+                    //     setState(() {
+                    //       showProgress = false;
+                    //     });
+                    //     Navigator.push(
+                    //       context,
+                    //       MaterialPageRoute(
+                    //         builder: (context) => Dashboard(),
+                    //       ),
+                    //     );
+                    //   }
+                    // }
+                    // catch (e)
+                    // {
+                    //   ScaffoldMessenger.of(context)
+                    //       .showSnackBar(failureSnackBar);
+                    //   setState(() {
+                    //     showProgress = false;
+                    //   });
+                    // }
                   },
                   minWidth: 200.0,
                   height: 45.0,
@@ -159,5 +171,20 @@ class _MyLoginPageState extends State<MyLoginPage> {
         ),
       ),
     );
+  }
+
+  postDetails() async {
+    log('inside post');
+    FirebaseFirestore firestore = FirebaseFirestore.instance;
+    User user = _auth.currentUser;
+    UserModel _userModel = UserModel();
+    String em=_userModel.email = user.email;
+    String n=_userModel.name = "Rathane";
+    // _userModel.password = "12345678";
+    String u=_userModel.uid = user.uid;
+
+    // _userModel.
+  log('Datas:- $em ,$n ,$u ');
+    await firestore.collection("users").doc(user.uid).set(_userModel.toMap());
   }
 }

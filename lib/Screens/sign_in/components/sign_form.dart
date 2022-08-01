@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:loading_animations/loading_animations.dart';
-
 import '../../../components/custom_surfix_icon.dart';
 import '../../../components/default_button.dart';
 import '../../../components/form_error.dart';
@@ -8,9 +7,7 @@ import '../../../constants.dart';
 import '../../../helper/keyboard.dart';
 import '../../../size_config.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
-import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
 import '../../dashboard.dart';
 
 class SignForm extends StatefulWidget {
@@ -72,6 +69,7 @@ class _SignFormState extends State<SignForm> {
       key: _formKey,
       child: Column(
         children: [
+          SizedBox(height: getProportionateScreenHeight(30)),
           buildEmailFormField(),
           SizedBox(height: getProportionateScreenHeight(30)),
           buildPasswordFormField(),
@@ -89,6 +87,7 @@ class _SignFormState extends State<SignForm> {
               ),
               Text("Remember me"),
               Spacer(),
+              SizedBox(height: getProportionateScreenHeight(70)),
               GestureDetector(
                 onTap: () {},
                 // onTap: () => Navigator.pushNamed(
@@ -110,9 +109,7 @@ class _SignFormState extends State<SignForm> {
                 _formKey.currentState!.save();
                 // if all are valid then go to success screen
                 KeyboardUtil.hideKeyboard(context);
-
-
-                  setState(() {
+                setState(() {
                     showProgress = true;
                   });
 
@@ -134,7 +131,8 @@ class _SignFormState extends State<SignForm> {
                           builder: (context) => Dashboard(),
                         ),
                       );
-                    } else {
+                    }
+                    else {
                       // ScaffoldMessenger.of(context)
                       //     .showSnackBar(failureSnackBar);
                       // setState(() {
