@@ -65,12 +65,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 onChanged: (value) {
                   email = value; //get the value entered by user.
                 },
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                     hintText: "Enter your Email",
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(32.0)))),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20.0,
               ),
               TextField(
@@ -79,12 +79,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 onChanged: (value) {
                   password = value; //get the value entered by user.
                 },
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                     hintText: "Enter your Password",
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(32.0)))),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20.0,
               ),
               Material(

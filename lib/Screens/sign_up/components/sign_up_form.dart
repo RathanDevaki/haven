@@ -9,7 +9,6 @@ import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 
 import 'package:flutter/material.dart';
 
-
 import '../../../Models/user_model.dart';
 import '../../../components/custom_surfix_icon.dart';
 import '../../../components/default_button.dart';
@@ -51,7 +50,7 @@ class _SignUpFormState extends State<SignUpForm> {
 
   final _formKey = GlobalKey<FormState>();
   late String fullName;
-  late String phone;
+  String phone = "";
   late String email;
   late String password;
   late String address;
@@ -180,7 +179,6 @@ class _SignUpFormState extends State<SignUpForm> {
 
   TextFormField buildPhoneField() {
     return TextFormField(
-
       onSaved: (newValue) {
         phone = newValue.toString();
       },
@@ -353,17 +351,26 @@ class _SignUpFormState extends State<SignUpForm> {
       ),
     );
   }
+
   postDetails() async {
     log('inside post');
     FirebaseFirestore firestore = FirebaseFirestore.instance;
-    User? user =_auth.currentUser;
-    UserModel userModel=UserModel(email: user!.email.toString(), uid: user!.uid, name: fullName, address: address,phone: phone);
-    await firestore.collection("users").doc(user.uid).set(userModel.toMap()).whenComplete(() {
-      setState((){
-        showProgress=false;
+    User? user = _auth.currentUser;
+    UserModel userModel = UserModel(
+        email: user!.email.toString(),
+        uid: user!.uid,
+        name: fullName,
+        address: address,
+        phone: phone);
+    await firestore
+        .collection("users")
+        .doc(user.uid)
+        .set(userModel.toMap())
+        .whenComplete(() {
+      setState(() {
+        showProgress = false;
       });
-      ScaffoldMessenger.of(context)
-          .showSnackBar(successSnackBar);
+      ScaffoldMessenger.of(context).showSnackBar(successSnackBar);
       Navigator.push(
         context,
         MaterialPageRoute(
@@ -372,6 +379,4 @@ class _SignUpFormState extends State<SignUpForm> {
       );
     });
   }
-
 }
-
