@@ -6,6 +6,7 @@ import 'package:haven/Screens/sign_up/components/sign_up_form.dart';
 import 'package:haven/Screens/sign_up/sign_up_screen.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'Screens/sign_in/sign_in_screen.dart';
 import 'login.dart';
 
 void main() async {

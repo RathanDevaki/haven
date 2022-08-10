@@ -48,6 +48,7 @@ dependencies:
   progress_state_button: ^1.0.4
   flutter_neumorphic: ^3.2.0
   flutter_barcode_scanner: ^2.0.0
+  avatar_view: ^1.0.1
   
   
   

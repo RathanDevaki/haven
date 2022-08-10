@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:haven/Screens/sign_up/sign_up_screen.dart';
 import '../../../components/socal_card.dart';
 import '../../../size_config.dart';
 import 'sign_form.dart';
@@ -24,10 +25,7 @@ class Body extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                Text(
-                  "Sign in with your email and password  \nor continue with social media",
-                  textAlign: TextAlign.center,
-                ),
+
                 SizedBox(height: SizeConfig.screenHeight * 0.08),
                 SignForm(),
                 SizedBox(height: SizeConfig.screenHeight * 0.08),
@@ -49,6 +47,21 @@ class Body extends StatelessWidget {
                 //   ],
                 // ),
                 SizedBox(height: getProportionateScreenHeight(20)),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => SignUpScreen(),
+                    ));
+                  },
+                  child: Text(
+                    'Not a member? Register..',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.blue,
+                      fontWeight: FontWeight.w900,
+                    ),
+                  ),
+                ),
                 // NoAccountText(),
               ],
             ),
