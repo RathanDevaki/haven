@@ -45,7 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Haven"),
+        title: const Text("Haven"),
       ),
       body: Center(
         child: ModalProgressHUD(
@@ -53,11 +53,11 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text(
+              const Text(
                 "Registration Page",
                 style: TextStyle(fontWeight: FontWeight.w800, fontSize: 20.0),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20.0,
               ),
               TextField(
